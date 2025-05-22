@@ -22,7 +22,7 @@
       <th>          | 헤더 셀(제목 셀), 기본적으로 굵고 가운데 정렬
       <td>          | 일반 데이터 셀, 기본적으로 좌측 정렬
       <thead>       | 표의 머리글(제목 행들) 그룹화, 선택
-      <tbody>       | 표의 본문(실제 데이터 행들) 그룹화, 필수
+     ★<tbody>       | 표의 본문(실제 데이터 행들) 그룹화, 필수
       <tfoot>       | 표의 하단(합계 등) 행들 그룹화, 선택
       <col>         | 열(Column) 속성 지정
       <colgroup>    | 여러 열을 그룹으로 묶어 속성 지정
@@ -56,6 +56,99 @@
       2) colspan, rowspan: 셀을 가로(열) 또는 세로(행)로 병합할 때 사용
       3) width, height, align, bgcolor: 크기, 정렬, 배경색 지정 (CSS로 대체 권장)
   -->
+   <!--기본 테이블-->
+   <table border = "1">
+    <caption>표의 제목을 의미합니다.</caption>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>중간</th>
+        <th>기말</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>홍길동</td>
+        <td>90</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>김영희</td>
+        <td>95</td>
+        <td>90</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>평균</td>
+        <td>92.5</td>
+        <td>85</td>
+      </tr>
+    </tfoot>
+   </table>
+
+   <!--행/열이 일정하지 않은 테이블-->
+   <table border = "1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+      </tr>
+    </tbody>
+   </table>
+
+   <!--열 병합하기-->
+   <table border = "1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td colspan = "2">e</td>
+      </tr>
+      <tr>
+        <td colspan = "3">f</td>
+      </tr>
+    </tbody>
+   </table>
+
+   <!--행 병합하기-->
+   <table border = "1">
+    <tbody>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td rowspan = "3">c</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td rowspan = "2">e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+      </tr>
+    </tbody>
+   </table>
+
+   <!--tbody 태그를 꼭 사용하는 이유 : 작성한 태그 구조와 렌더링된 태그 구조를 동일하게 맞추기 위해 사용하는 것-->
+   <table border = "1">
+    <tr>
+      <td>a</td>
+      <td>b</td>
+      <td>c</td>
+    </tr>
+   </table>
 
 </body>
 </html>
