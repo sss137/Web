@@ -8,12 +8,13 @@
 <body>
     
 <!--
-1. 객체(Object)
+1. ★객체(Object)
 
   1) JavaScript 데이터 유형 중 하나입니다.
   2) 데이터와 함수(메소드)를 하나로 묶어 관리할 수 있는 자료구조입니다.
-  3) 데이터가 저장되는 순서는 관리하지 않습니다.
-  4) 객체를 구성하는 하나의 데이터는 속성(property): 값(value) 조합으로 구성됩니다. (key: value 구조를 가짐)
+  3) 
+  데이터가 저장되는 순서는 관리하지 않습니다.
+  4) ★객체를 구성하는 하나의 데이터는 속성(property): 값(value) 조합으로 구성됩니다. (key: value 구조를 가짐)
     (1) 속성(property, 프로퍼티): 문자열 또는 심볼
     (2) 값(value): 문자열, 숫자, boolean, 배열, 다른 객체, 함수 등 모든 타입 가능
   5) 각 데이터들은 쉼표(comma)로 구분하며, trailing comma(후행 쉼표)를 사용할 수 있습니다.
@@ -23,16 +24,19 @@
         name: "홍길동",
         age: 30,
       }
+        
     (2) Object 생성자
       let user = new Object();
       user.name = "홍길동";
       user.age = 30;
+
     (3) 생성자 함수
       function Person(name, age) {
         this.name = name;
         this.age = age;
       }
       let user = new Person("홍길동", 30);
+
     (4) 클래스
       class Person {
         constructor(name, age) {
@@ -41,11 +45,13 @@
         }
       }
       let user = new Person("홍길동", 30);
+
   7) 프로퍼티 접근
     1) 점 표기법(. Dot Notation)
       obj.key
     2) 대괄호 표기법([] Bracket Notation)
       obj["key"]
+
   8) 프로퍼티 조작
     1) 추가 및 수정 (새로운 프로퍼티를 사용하면 추가, 기존 프로퍼티를 사용하면 수정)
       obj.key = "value"
@@ -82,6 +88,33 @@
     let {name, ...rest} = {name: "홍길동", age: 30, tel: '010-0000-0000'};
     // name = "홍길동", rest = {age: 30, tel: '010-0000-0000'}
 -->
+
+ <script>
+  {
+    //객체 생성
+    const person = {
+      name : "또치",
+      age : 30,
+      hobbies : [
+        "국", 
+        "영", 
+        "수"
+      ]
+    }
+    console.log(person);
+
+    //property 확인하기
+    console.log(person.name);
+    console.log(person.age);
+    console.log(person.hobbies);
+  
+    console.log(person["name"]);
+    console.log(person["age"]);
+    console.log(person["hobbies"]);
+  }
+  
+
+ </script>
 
 </body>
 </html>
