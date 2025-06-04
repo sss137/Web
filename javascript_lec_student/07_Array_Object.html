@@ -176,7 +176,7 @@ Array 내장 객체
       },
       {
         name: "제라드",
-        agree: true
+        agree: false
       }
     ]
     const names = users
@@ -187,16 +187,16 @@ Array 내장 객체
 
   //연습) 배열에 저장된 항목들을 ul태그로 만드세요.
   {
-    const seasons = ["spring", "summer", "autumn", "winter"];
-    let str = "<ul>";
-    seasons.map(season => "<li>" + season + "</li>").forEach(liTag => str += liTag);
-    str += "</ul>";
-    document.write(str);
-
     // const seasons = ["spring", "summer", "autumn", "winter"];
-    // const seasonsList = seasons.map(season => "<li>" + season + "</li>");
-    // const result = "<ul>" + seasonsList.join("") + "</ul>";
-    // document.write(result);
+    // let str = "<ul>";
+    // seasons.map(season => "<li>" + season + "</li>").forEach(liTag => str += liTag);
+    // str += "</ul>";
+    // document.write(str);
+
+    const seasons = ["spring", "summer", "autumn", "winter"];
+    const seasonsList = seasons.map(season => "<li>" + season + "</li>");
+    const result = "<ul>" + seasonsList.join("") + "</ul>";
+    document.write(result);
   }
  </script>
 
