@@ -68,7 +68,7 @@
 
 
 4. 고전 이벤트 모델
-  1) 이벤트 할당을 위해서 이벤트 속성(Event Handler Property)를 활용하는 방법입니다.
+  1) 이벤트 할당을 위해서 이벤트 핸들러 프로퍼티(Event Handler Property)를 활용하는 방법입니다.
   2) 이벤트 종류 앞에 "on" 키워드를 붙이면 이벤트 핸들러 프로퍼티가 완성됩니다.
     예) onclick, onkeydown, onsubmit, onfocus 등
   3) 하나의 이벤트에 하나의 이벤트 핸들러를 할당할 수 있습니다. (여러 개를 할당하면 마지막에 등록한 이벤트 핸들러만 동작합니다.)
@@ -211,7 +211,7 @@
   </div>
 </div>
 <script>
-  //이벤트 전파(Event Bubbling): 자식 이벤트가 보무로 전파되는 것을 의미합니다.
+  //이벤트 전파(Event Bubbling): 자식 이벤트가 부모로 전파되는 것을 의미합니다.
   const ancestor = document.getElementById('ancestor');
   const parent = document.getElementById('parent');
   const child = document.getElementById('child');
@@ -254,14 +254,14 @@
       }
     ]
   }
-  const str = data.items.map((item, i) => `<div class="item" data-no="${item.no}"><span>${item.no}</span><span>${item.title}</span><span>${item.content}</span></div>`).join('');
+  const str = data.items.map(item => `<div class="item" data-no="${item.no}"><span>${item.no}</span><span>${item.title}</span><span>${item.content}</span></div>`).join('');
   document.getElementById('list').innerHTML = str;
   const itemList = document.getElementsByClassName('item');
    for(let i =0; i < itemList.length; i++) {
     itemList[i].addEventListener('click', function(e) {             //div 태그의 클릭 이벤트(부모 클릭)
-      // console.log(e.target);                                     //e.target: 이벤트가 발생한 가장 안쪽 요소. 여기선 <span>. (자식 선택)
+      console.log(e.target);                                        //e.target: 이벤트가 발생한 가장 안쪽 요소. 여기선 <span>. (자식 선택)
       console.log(e.currentTarget);                                 //e.currentTarget: 이벤트가 실제로 발생한 요소. 여기선 <div>. (부모 선택>)
-      // console.log(e.currentTarget.dataset.no);                      //<div data-no="">태그의 data-속성값 중 no값을 가져옵니다.
+      console.log(e.currentTarget.dataset.no);                      //<div data-no="">태그의 data-속성값 중 no값을 가져옵니다.
     })
    } 
    // itemList[0].addEventListener('click', function(e) {
@@ -273,6 +273,7 @@
 </script>
 
 <hr>
+
 <style>
   table {
     border-collapse: collapse;
@@ -363,7 +364,7 @@ this
     favorite: function() {             //익명 함수 : 함수를 포함한 객체가 this에 바인딩
       console.log(this);               //user 객체
     },
-    hate : () => {                     //화살표 함수 : window 전역 객체가 this에 바인딩
+    hate: () => {                      //화살표 함수 : window 전역 객체가 this에 바인딩
       console.log(this);               //window 전역 객체
     }
   }
