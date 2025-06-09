@@ -9,7 +9,6 @@
   
 <!--
 BOM
-
 1. Browser Object Model (브라우저 객체 모델)
 2. 브라우저의 구성 요소를 JavaScript 객체로 저장한 뒤 사용할 수 있습니다.
 3. 주요 BOM 요소
@@ -23,7 +22,7 @@ BOM
     (3) 사용 예시
       ① 뒤로 가기        : history.back()
       ② 앞으로 가기      : history.forward()
-      ③ 특정 위치로 가기 : history.go(N)
+      ③ 특정 위치로 가기 : history.go(N)          //N이 양수면 앞으로 가기, 음수면 뒤로 가기
   3) location
     (1) 문서의 현재 위치에 대한 정보가 담긴 Location 객체를 반환합니다.
     (2) 사용 예시
@@ -37,6 +36,33 @@ BOM
     (1) 브라우저 화면 정보를 관리하는 객체입니다.
     (2) 화면의 너비/높이 정보를 알아낼 수 있습니다.
 -->
+
+<div>
+  <button onclick="history.back()">뒤로</button>
+  <button onclick="history.go(-2)">뒤로뒤로</button>
+</div>
+
+<div>
+  <button onclick="location.href='https://www.naver.com'">네이버</button>
+  <button onclick="location='https://www.naver.com'">네이버</button>
+  <button onclick="location.assign('https://www.naver.com')">네이버</button>
+  <button onclick="location.replace('https://www.naver.com')">네이버(뒤로가기불가)</button>
+  <button onclick="location.reload()">새로고침(캐시사용)</button>
+  <button onclick="location.reload(true)">새로고침(캐시사용안함)</button>
+</div>
+
+<script>
+
+  function openPopup() {
+    if(!document.cookie.includes('신메뉴출시기념이벤트')) {
+      window.open('cookie.html', '', `width=320,height=480,top=50,left=50`);
+    }
+  }
+
+  openPopup();
+
+</script>
+
 
 </body>
 </html>
