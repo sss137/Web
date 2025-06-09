@@ -98,6 +98,7 @@
     const regexp = /[al]/g;                                //a 또는 l, g(모든 패턴 매칭)
     console.log('RegExp test():', regexp.test(str));
     console.log('RegExp exec():', regexp.exec(str));
+    console.log('RegExp exec():', regexp.exec(str));       //순서대로 가져옴
     console.log('String match():', str.match(regexp));
     console.log('String search():', str.search(regexp));
   }
@@ -268,7 +269,6 @@
   <br>
   <input type="password" id="user-pw" placeholder="****">
   <br>
-
   <button type="submit">로그인</button>
 </form>
 <script>
