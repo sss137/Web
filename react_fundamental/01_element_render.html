@@ -42,18 +42,18 @@
 <script>
   //Element 만들기(React.createElement() 메소드 이용)
   const h1Element = React.createElement(
-    'h1',                 //<h1>
+    'h1',                 //<h1></h1>
    {
     id: 'title',          //id="title"
     className: 'title'    //class="title"
     },
-    'Hello World'         //<h1 id="title" class="title">Hello World</h1>
-    );
+    'Hello World'         
+  );
+  //기존 결과 형태는 <h1 id="title" class="title">Hello World</h1>
 
     //redering(Element를 화면에 표시하기)
-    const root1 = document.getElementById('root1');
-    // ReactDOM.creatRoot(root1) 뿌려지는 장소 / render(h1Element) 뿌려지는 대상 
-    ReactDOM.createRoot(root1).render(h1Element);
+    // ReactDOM.creatRoot(document.getElementById('root1')) 뿌려지는 장소 / render(h1Element) 뿌려지는 대상 
+    ReactDOM.createRoot(document.getElementById('root1')).render(h1Element);
 </script>
 
 <hr>
