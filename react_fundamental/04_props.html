@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<!-- 실험
+<!--
 1. props(properties)
   1) props는 리액트에서 컴포넌트 간에 데이터를 전달할 때 사용하는 객체입니다. 
   2) 주로 부모 컴포넌트가 자식 컴포넌트에게 데이터나 설정값을 넘겨줄 때 활용되며, 컴포넌트의 동작과 렌더링 결과를 동적으로 제어할 수 있습니다.
@@ -86,7 +86,7 @@
 <div id="root1"></div>
 <script type="text/babel">
   const NameCard1 = (props) => {
-    return (
+    return(
       <h1>
         <div>이름 {props.name}</div>
         <div>연락처 {props.phone}</div>
@@ -97,7 +97,7 @@
 
   const NameCard2 = (props) => {
     const {name, phone} = props;                       //객체 구조 분해 할당
-    return (
+    return(
       <h1>
         <div>이름 {name}</div>
         <div>연락처 {phone}</div>
@@ -106,7 +106,7 @@
   }
 
   const NameCard3 = ({name, phone}) => {               //좀 더 적극적으로 객체 구조 분해 할당 활용하기
-    return (
+    return(
       <h1>
         <div>이름 {name}</div>
         <div>연락처 {phone}</div>
@@ -115,7 +115,7 @@
   }
 
   const NameCard4 = (props) => {
-    return (
+    return(
       <h1>
         <div>이름 {props.name}</div>
         <div>연락처 {props.phone}</div>
@@ -129,7 +129,7 @@
     }
 
     const NameCard5 = ({name="Jackson", phone="010.5555.5555"}) => {
-    return (
+    return(
       <h1>
         <div>이름 {name}</div>
         <div>연락처 {phone}</div>
@@ -140,7 +140,7 @@
     ReactDOM.createRoot(document.getElementById('root1')).render([
     <NameCard1 name={name} phone={phone} />,
     <NameCard2 name="Alice" phone="010.2222.2222" />,
-    <NameCard3 name={"Tomas"} phone={"010.3333.3333"} />,
+    <NameCard3 name="Tomas" phone="010.3333.3333" />,
     <NameCard4 />,
     <NameCard5 />
   ])
@@ -190,13 +190,11 @@
       const App = () => {
         const data = "Who needs me?"
         return(
-          <>
             <FirstComp data={data} />
-          </>
         )
       }
 
-  ReactDOM.createRoot(document.getElementById('root2')).render(<App/>);
+  ReactDOM.createRoot(document.getElementById('root2')).render(<App />);
 </script>
 
 <hr>
