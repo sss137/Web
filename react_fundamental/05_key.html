@@ -41,19 +41,17 @@
 
 <hr>
 
-<div id="root2"></div>0
+<div id="root2"></div>
 <script type="text/babel">
   {
     const ListItemComp = ({item}) => {
        return(
-        //li
         <li>{item}</li>
       )
     }
 
     const ListComp = ({items}) => {
       return(
-        //ul
         <ul>
           {items.map((item, i) => <ListItemComp key={i} item={item} />)}
         </ul>
