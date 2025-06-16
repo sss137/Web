@@ -104,10 +104,10 @@
   //입력 필드 등의 값이 변경될 때 실행될 함수를 지정하는 속성(입력+삭제 모두 포함) : onChange
   const InputComponent = () => {
     const [inputValue, setInputValue] = React.useState('');
-    const handlerChange = (e) => {
-      console.log(e);
-      console.log(e.target);
-      console.log(e.target.value);
+    const handlerChange = (e) => {               //e는 이벤트 객체 : 이벤트에 대한 정보를 담은 객체(여러 데이터를 담은 구조체)
+      console.log(e);                            
+      console.log(e.target);                     //e.target : 이벤트가 일어난 태그를 DOM 요소 객체로 반환                      
+      console.log(e.target.value);               //e.target.value : 사용자가 입력한 값
       setInputValue(e.target.value);
      }
 
@@ -125,6 +125,12 @@
   }
 
   ReactDOM.createRoot(document.getElementById('root3')).render(<InputComponent />);
+  //1. 사용자가 <input>에 5 입력
+  //2. onChange 이벤트 발생 → handlerChange 실행
+  //3. e.target.value는 "5"
+  //4. setInputValue("5") 실행 → 상태 변경
+  //5. React가 컴포넌트를 다시 렌더링
+  //6. <h1>{inputValue}</h1> → 화면에 5 출력됨
 </script>
 
 <hr>
