@@ -116,8 +116,8 @@ const Today = () => {
   })
   React.useEffect(() => {
     alert('useEffect 동작')
-  }, [date.year, date.month]);                                     //의존 배열에 명시한 date.year, date.month 값이 변하면 useEffect에 등록한 함수가 동작합니다.
-  const handleChange = e => {setDate({...date, [e.target.id]: Number(e.target.value)})
+  }, [date.year, date.month]);                           //의존 배열에 명시한 date.year, date.month 값이 변하면 useEffect에 등록한 함수가 동작합니다.
+  const handleChange = e => {setDate({...date, [e.target.id]: e.target.value})
   }
 
   return(
@@ -155,10 +155,8 @@ ReactDOM.createRoot(document.getElementById('root3')).render(<Today />)
       if(user.age < 0 || user.age > 120) {
         alert('올바른 나이를 입력하세요');
       }
-    }, [user.name, user.age])                                //user.name, user.age가 변할 때마다 useEffect에 등록한 함수가 동작합니다.
-    const handleChange = (e) => {
-      setUser({ ...user, [e.target.id]: e.target.value })
-    }
+    }, [user.name, user.age])                            //user.name, user.age가 변할 때마다 useEffect에 등록한 함수가 동작합니다.
+    const handleChange = e => {setUser({ ...user, [e.target.id]: e.target.value })}
 
     return (
       <>
