@@ -104,7 +104,7 @@
   //입력 필드 등의 값이 변경될 때 실행될 함수를 지정하는 속성(입력+삭제 모두 포함) : onChange
   const InputComponent = () => {
     const [inputValue, setInputValue] = React.useState('');
-    const handlerChange = (e) => {               //e는 이벤트 객체 : 이벤트에 대한 정보를 담은 객체(여러 데이터를 담은 구조체)
+    const handleChange = e => {                  //e는 이벤트 객체 : 이벤트에 대한 정보를 담은 객체(여러 데이터를 담은 구조체)
       console.log(e);                            
       console.log(e.target);                     //e.target : 이벤트가 일어난 태그를 DOM 요소 객체로 반환                      
       console.log(e.target.value);               //e.target.value : 사용자가 입력한 값
@@ -116,7 +116,7 @@
         <input                                  
           type="text"     
           value={inputValue}
-          onChange={handlerChange}            
+          onChange={handleChange}            
           placeholder="값을 입력하세요"                 
         />
         <h1>{inputValue}</h1>
@@ -140,8 +140,8 @@
   const CheckboxComponent = () => {
     const [isChecked, setIsChecked] = React.useState(false);
     //체크 상태가 변할때마다 발생하는 이벤트
-    const handlerChange = (e) => {
-      // console.log(e);
+    const handleChange = e => {
+      console.log(e);
       console.log(e.target.checked);
       setIsChecked(e.target.checked);
     }
@@ -152,7 +152,7 @@
           type="checkbox"
           id="chk"
           checked={isChecked}
-          onChange={handlerChange}
+          onChange={handleChange}
         />
         <label htmlFor="chk">체크박스</label>
         {/* boolean 값은 표현식으로 화면에 표시할 수 없습니다. 문자열로 바꿔서 표시합니다. */}
@@ -172,23 +172,20 @@
   //select 태그에 skt, kt, lgu+ 등록하고 선택한 통신사를 state에 저장하고 화면에 표시하기
   const SelectComponent = () => {
     const [selectedValue, setSelectedValue] = React.useState('');
-    const handleChange = (e) => {
+    const handleChange = e => {
       setSelectedValue(e.target.value);
     }
     
     return(
       <>
-      <select
-        value={selectedValue}
-        onChange={handleChange}
-      >
+      <select value={selectedValue} onChange={handleChange}>
         <option value='' hidden>통신사선택</option>
         <option>skt</option>
         <option>kt</option>
         <option>lgu+</option>
-        </select>
-        <h1>{selectedValue}</h1>
-        </>
+      </select>
+      <h1>{selectedValue}</h1>
+      </>
       )
   }
       
@@ -199,13 +196,13 @@
 
 <div id="root6"></div>
 <script type="text/babel">
-  //로그인 화면과 state (state 2개 사용)
+  //로그인 화면과 state(state 2개 사용)
   const LoginComponent = () => {
     const [id, setId] = React.useState('');
     const [pw, setPw] = React.useState('');
 
     //submit 이벤트 핸들러
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
       if(id == '' || pw == '') {
         alert('아이디와 비밀번호 입력을 확인하세요');
         e.preventDefault();                           //submit을 막습니다.
@@ -214,11 +211,8 @@
       alert(`id: ${id}, pw: ${pw}`);
     }
 
-
     return(
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={id}
@@ -227,10 +221,10 @@
         />
         <br />
         <input
-        type="password"
-        value={pw}
-        onChange={e => setPw(e.target.value)}
-        placeholder="비밀번호"
+          type="password"
+          value={pw}
+          onChange={e => setPw(e.target.value)}
+          placeholder="비밀번호"
         />
         <br />
         <button type="submit">로그인</button>
@@ -254,7 +248,7 @@
     })
 
     //입력 상자(id, pw)의 입력 변경 시 발생하는 이벤트 핸들러
-    const handleChange = (e) => {
+    const handleChange = e => {
       console.log(e.target.id);                                 //입력하고 있는 입력 상자 확인
       console.log(e.target.id, e.target.value);                 //입력하고 있는 입력 상자의 id와 입력값
       setUser({
@@ -264,7 +258,7 @@
     }
 
     //서브밋 이벤트 핸들러
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
       if(user.id == '' || user.pw =='') {
         alert('아이디와 비밀번호 입력을 확인하세요')
         e.preventDefault();
@@ -294,8 +288,8 @@
           onChange={handleChange}
           placeholder="비밀번호"
           />
-          <br />
-          <button type="submit">로그인</button>
+        <br />
+        <button type="submit">로그인</button>
       </form>
     )
   }
@@ -311,12 +305,12 @@
     const [inputValue, setInputValue] = React.useState('');
     const [animals, setAnimals] = React.useState([]);
 
-    const handleChange= (e) => {
+    const handleChange= e => {
       setInputValue(e.target.value);
     }
 
     //추가 등록 이벤트
-    const handleClick = (e) => {
+    const handleClick = e => {
       if(inputValue.trim() === '') {
         alert('동물 이름을 입력하세요');
         return;
@@ -333,25 +327,151 @@
     return(
       <>
         <input
-        type="text"
-        value={inputValue}
-        onChange={handleChange}
-        placeholder="동물입력"
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          placeholder="동물입력"
         />
-        <button
-        type="button"
-        onClick={handleClick}
-        >추가</button>
+        <button type="button" onClick={handleClick}>추가</button>
         <ul>
-          {
-            animals.map((animal, i) => <li key={i}>{animal}</li>)
-          }
+          {animals.map((animal, i) => <li key={i}>{animal}</li>)}
         </ul>
       </>
     )
   }
 
   ReactDOM.createRoot(document.getElementById('root8')).render(<AnimalComponent />);
+</script>
+
+<hr>
+
+<div id="root9"></div>
+<script type="text/babel">
+  //연습) 좋아요 버튼 누를때마다 버튼 텍스트가 "좋아요", "싫어요"가 반복되도록 컴포넌트를 구현하세요.
+  const LikeButton = () => {
+    const [isLike, setIsLike] = React.useState(false);
+    const handleClick = e => {
+      setIsLike(!isLike);
+    }
+    return(
+      <button onClick={handleClick}>{isLike ? '좋아요' : '싫어요'}</button>
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root9')).render(<LikeButton />);
+</script>
+
+<hr>
+
+<div id="root10"></div>
+<script type="text/babel">
+  //연습) 배열에 값 추가하기
+  //      "1 추가" 버튼 클릭 => 배열에 1 추가 => "2 추가" 버튼 클릭 => 배열에 2 추가 => ...
+  //      배열에 저장된 모든 요소를 화면에 출력하세요.
+  const NumberList = () => {
+    const [number, setNumber] = React.useState(1);
+    const [numbers, setNumbers] = React.useState([]);
+    const handleClick = e => {
+      setNumber(number + 1);
+      setNumbers([...numbers, number]);
+    }
+    return(
+      <>
+        <button onClick={handleClick}>{number} 추가</button>
+        <div>
+          {numbers.map((number, i) => <span key={i} style={{marginRight: 10}}>{number}</span>)}
+        </div>
+      </>
+   )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root10')).render(<NumberList />);
+</script>
+
+<hr>
+
+<div id="root11"></div>
+<script type="text/babel">
+  //연습) 휴대전화번호를 입력 받는 입력 상자를 반환하는 컴포넌트를 구현하세요.
+  //      휴대전화번호를 입력할 때 하이픈('-')을 입력하면 자동으로 지워버리세요.
+  //      String의 replace 함수를 이용해서 모든 하이픈('-')을 빈 문자열로 바꾸시면 됩니다.
+  //      전체 휴대전화 번호 길이를 11자로 유지하세요.
+  const InputPhone = () => {
+    const [phone, setPhone] = React.useState('');
+    const handleChange = e => {
+    //입력값의 모든 하이픈을 제거한 값을 setPhone()에게 전달
+    setPhone(e.target.value.replace('-', '').substring(0, 11))
+    }
+    return(
+      <>
+        <input
+          type="text"
+          value={phone}
+          onChange={handleChange}
+          placeholder="휴대전화번호입력"
+        />
+        <h1>{phone}</h1>
+      </>
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root11')).render(<InputPhone />);
+</script>
+
+<hr>
+
+<div id="root12"></div>
+<script type="text/babel">
+  //연습) 입력 상자에 새로 입력한 값과 이전에 입력되어 있던 값을 모두 출력하는 컴포넌트를 구현하세요.
+  //      화면에는 현재 입력한 값과 이전에 입력되어 있던 값을 모두 출력하세요.
+  const PreviousPresent = () => {
+    const [prev, setPrev] = React.useState('');
+    const [present, setPresent] = React.useState('');
+    const handleChange = e => {
+      //새로 입력한 값이 present가 되고, 기존 present가 prev가 됩니다.
+      setPrev(present);
+      setPresent(e.target.value);
+    }
+
+    return(
+      <>
+        <input
+          type="text"
+          value={present}
+          onChange={handleChange}
+          placeholder="아무말이나쓰시오"
+        />
+        <h1>이전값: {prev}</h1>
+        <h1>현재값: {present}</h1>
+      </>
+    )
+  }
+
+ReactDOM.createRoot(document.getElementById('root12')).render(<PreviousPresent />);
+</script>
+
+<hr>
+
+<div id="root13"></div>
+<script type="text/babel">
+  //연습) 3개의 스위치를 반환하는 컴포넌트를 구현하세요.
+  //      "스위치1 OFF", "스위치2 OFF", "스위치3 OFF"
+  //      각 스위치를 클릭할때마다 ON/OFF를 변견해야 합니다.
+  //      연습을 위해 state는 하나의 배열로 제한합니다.
+  const MultiSwitch = () => {
+    const [switches, setSwitches] = React.useState([false, false, false]);
+    const handleClick = e => {
+
+    }
+    
+    return(
+      <>
+        
+      </>
+    )
+  }
+
+  ReactDOM.createRoot(document.getElementById('root13')).render(<MultiSwitch />);
 </script>
 
 </body>
