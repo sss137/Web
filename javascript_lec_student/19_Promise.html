@@ -120,7 +120,8 @@
    const a = new Promise();
    const b = a.then();
    b.catch();
-   b.catch(), new Promise().then().catch() 둘이 같음
+   
+   b.catch() = new Promise().then().catch()
    기억) Promise()는 then()과 catch()를 호출한다, then()은 Promise()를 감싸서 반환한다.(a.then() 이 부분)
 
     -->
