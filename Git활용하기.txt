@@ -1,17 +1,62 @@
+git config --global user.name : 사용자 등록
+
+git config --global user.email : 사용자 이메일 등록 
+
+git config --list : 명령어
+
+mkdir local : local 폴더 만들기
+
+cd local : local 폴더로 이동
+
+git init : git 폴더 생성 
+
+echo 'a' >> a.txt : a라는 내용의 a라는 제목을 가진 txt파일 생성
+
+git status : 상태 확인
+
+git add . : 추적할 수 있게 등록 (.이 파일 전체를 의미)
+
+git rm --cached a.txt : a.txt 추적 삭제
+
+vi a.txt : a.txt 편집[ i(편집), End(편집종료), :(나갈때모드), w(저장), q(나가기)
+
+git commit : commmit 등록
+
+git log : log 확인
+
+git log --oneline : log 한줄 요약
+
+git commit -m ' ' : commit 간편 등록
+
+git remote add origin 주소 : github 등록
+
+git push origin main : 파일 github에 올리기
+
+git push -f origin main : github에 강제로 그 전 버전 업데이트 할때, 강제로 commit
+
+git reset --soft HEAD^ : 바로 전 commit 삭제 
+ 
+git update-ref -d HEAD : commit 전체 리셋
+
+git pull origin main : github에 있는 파일 가져오기
+
+git pull --allow-unrelated-histories origin main : github에서 강제로 가져오기
+
+git clone 주소 : github에서 통째로 가져오기
+
+git commit --ammend -m ' ' : 그 전 commit 수정
+
 # git branch
-현재 저장소(레포지토리)에 있는 브랜치 목록
+현재 저장소(레파지토리)에 있는 브랜치 목록
 
 # git branch -a
 로컬+원격 모든 브랜치 표시
-
-# git branch -d 브랜치명 || git branch -D 브랜치명
-안전하게 "병합된" 브랜치만 삭제 || 강제로 브랜치 삭제
 
 # git fetch
 내 파일에 변화는 없지만 내 git은
 "아, 원격 저장소(main)에 이런 커밋이 생겼구나!"
 라고 참고 정보 업데이트를 달아두는 것
-+#정리표
++ 정리표
 명령어	내 파일 바뀜?	설명
 git fetch	❌			최신 정보만 받고, 실제 파일은 그대로
 git merge	⭕			직접 merge 하면, 그때 내 파일 바뀜
@@ -22,8 +67,6 @@ git pull	⭕			최신 정보 받고, 내 파일도 자동 병합
 
 # git checkout 브랜치명
 다른 브랜치로 이동 
---prune 옵션을 붙이면:
-원격 저장소에서 삭제된 브랜치도 내 로컬에서 "깨끗이" 정리함
 
 # git push origin --delete 브랜치명
 원격 브랜치 삭제
@@ -31,265 +74,10 @@ git pull	⭕			최신 정보 받고, 내 파일도 자동 병합
 # git branch -d 브랜치명
 내 로컬 브랜치 삭제(필요시)
 
-# git merge
-여러 브랜치의 내용을 하나로 합치는 작업
+# git push --set-upstream origin 브랜치명
+푸시할때 어떤 브랜치에 푸시하는지 설정 (ex: git push)
 
-# git fetch origin
+# git fetch origin(원격 저장소의 최신 내용만 확인 & 로컬에 동기화(코드에는 영향 없음))
    git reset --hard origin/상대 브랜치 이름(로컬 코드를 상대 브랜치 코드와 완전히 동일하게 맞춤)
    git push --force-with-lease(원격도 강제로 덮어쓰기) 
 다른 브랜치 코드 강제로 덮고 강제로 푸시
-
-====================================================================================
-
-### local 이라는 이름의 폴더 만들기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads
-$ mkdir local
-
-
-### local 폴더로 이동하기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads
-$ cd local
-
-
-### local 폴더를 작업 폴더(working directory)로 만들기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local
-$ git init
-Initialized empty Git repository in C:/Users/GD/Downloads/local/.git/
-
-
-### 사용자 등록1 - 이름 등록 (사용자 정보는 커밋에서 사용됨)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git config --global user.name teacher-min
-
-
-### 사용자 등록2 - 이메일 등록 (사용자 정보는 커밋에서 사용됨)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git config --global user.email minkt78@gmail.com
-
-
-### 1.txt 파일 만들기 
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ echo '1' >> 1.txt
-
-
-### 2.txt 파일 만들기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ echo 'a' >> 2.txt
-
-
-### 3.txt 파일 만들기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ echo '가' >> 3.txt
-
-
-### 현재 상태 보기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git status
-On branch main
-
-No commits yet   ### 아직 커밋 한 적 없어요.
-
-Untracked files:   ### 추적하지 않는 파일들이 있어요.
-  (use "git add <file>..." to include in what will be committed)
-        1.txt
-        2.txt
-        3.txt
-
-nothing added to commit but untracked files present (use "git add" to track)
-
-
-### 1.txt 파일만 스태이징 (추적하기)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git add 1.txt
-warning: in the working copy of '1.txt', LF will be replaced by CRLF the next time Git touches it
-
-
-### 현재 상태 보기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git status
-On branch main
-
-No commits yet
-
-Changes to be committed:   ### 추적하는 파일이 있어요.
-  (use "git rm --cached <file>..." to unstage)
-        new file:   1.txt
-
-Untracked files:   ### 추적 안하는 파일들이 있어요.
-  (use "git add <file>..." to include in what will be committed)
-        2.txt
-        3.txt
-
-
-### 추적하고 있는 1.txt 파일의 추적 취소하기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git rm --cached 1.txt
-rm '1.txt'
-
-
-
-### 현재 상태 보기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git status
-On branch main
-
-No commits yet
-
-Untracked files:   ### 추적하지 않는 파일들이 있어요.
-  (use "git add <file>..." to include in what will be committed)
-        1.txt    ### 더 이상 추적하지 않는 1.txt
-        2.txt
-        3.txt
-
-nothing added to commit but untracked files present (use "git add" to track)
-
-
-### 현재 폴더(.)의 모든 파일들을 스태이징(추적하기)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git add .
-warning: in the working copy of '1.txt', LF will be replaced by CRLF the next time Git touches it
-
-
-### 커밋(저장하기 - 정확히는 로컬레파지토리에 스냅샷을 남김)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git commit
-
-### vi 편집기가 열리면 커밋 메시지를 작성하고 vi 편집기를 닫아야 함
-# 1. 입력 모드로 들어가기 위해서 i
-# 2. first commit 이라는 메시지 입력
-# 3. 입력 모드를 끝내기 위해서 esc
-# 4. 콜론 모드로 들어가기 위해서 :
-# 5. 저장(w), 닫기(q)를 위해서 wq
-# 6. 팁) 저장 안하고 닫고 싶으면 !q
-
-[main (root-commit) ba8c9b4] first commit
- 3 files changed, 3 insertions(+)
- create mode 100644 1.txt
- create mode 100644 2.txt
- create mode 100644 3.txt
-
-
-### 커밋 로그 확인하기
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git log
-commit ba8c9b4653c740cdc4858f2c38eb80aedfb84566 (HEAD -> main)
-Author: teacher-min <minkt78@gmail.com>
-Date:   Tue May 20 17:12:33 2025 +0900
-
-    first commit
-
-
-### 현재 커밋이 1개 뿐이므로 reset 대신 update-ref 이용해서 커밋을 취소 (커밋만 취소되고 스태이징은 유지되는 중)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git update-ref -d HEAD
-
-
-### 커밋 로그 확인하기 (커밋이 없으므로 오류가 발생하게 됨)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git log
-fatal: your current branch 'main' does not have any commits yet   ### 오류 발생
-
-
-### 첫 번째 커밋, 커밋할 때 -m 옵션으로 커밋 메시지를 바로 작성할 수 있음
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git commit -m 'first commit'
-[main (root-commit) b45e5c8] first commit
- 3 files changed, 3 insertions(+)
- create mode 100644 1.txt
- create mode 100644 2.txt
- create mode 100644 3.txt
-
-
-### 두 번째 커밋을 위해서 1.txt 파일을 열어 수정하고자 함
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ vi 1.txt
-### vi 편집기 열리면 : i -> 내용 수정 -> esc -> : -> wq
-
-
-### 변경 사항 스태이징(추적하기)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git add 1.txt
-warning: in the working copy of '1.txt', LF will be replaced by CRLF the next time Git touches it
-
-
-### 두 번째 커밋
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git commit -m 'second commit'
-[main 0339269] second commit
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-
-### 커밋 로그 확인하기 (현재 커밋이 2개)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git log
-commit 03392698321d6d2bc961889970b91889f3533c42 (HEAD -> main)
-Author: teacher-min <minkt78@gmail.com>
-Date:   Tue May 20 17:16:21 2025 +0900
-
-    second commit
-
-commit b45e5c8ca230e3f4abbda20d7f77767445b5bb52
-Author: teacher-min <minkt78@gmail.com>
-Date:   Tue May 20 17:15:40 2025 +0900
-
-    first commit
-
-
-### 커밋이 2개 이상인 경우 reset 이용해서 커밋을 취소할 수 있음
-### HEAD : 가장 최근 커밋을 의미
-### HEAD~1 : 가장 최근 커밋 1개를 의미. 즉 가장 최근 커밋을 의미.
-### -- soft : 커밋만 취소하고 스태이징은 유지
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git reset --soft HEAD~1
-
-
-
-### 커밋 로그 확인하기 (최근 커밋인 second commit 이 없어짐)
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git log
-commit b45e5c8ca230e3f4abbda20d7f77767445b5bb52 (HEAD -> main)
-Author: teacher-min <minkt78@gmail.com>
-Date:   Tue May 20 17:15:40 2025 +0900
-
-    first commit
-
-
-### 다시 두 번째 커밋 실시. 이미 1.txt 파일은 스태이징 되어 있으므로 곧바로 커밋이 가능함
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git commit -m 'second commit'
-[main 8ca5e35] second commit
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-
-### 원격 레파지토리로 올리기 위해서 origin 등록
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git remote add origin https://github.com/teacher-min/local.git
-
-
-### 원격 레파지토리로 올림
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git push origin main
-Enumerating objects: 9, done.
-Counting objects: 100% (9/9), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (9/9), 559 bytes | 559.00 KiB/s, done.
-Total 9 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-To https://github.com/teacher-min/local.git
- * [new branch]      main -> main
-
-
-### 로컬 레파지토리의 가장 최근 커밋을 삭제
-### HEAD^ : 가장 최근 커밋 1개를 의미 (참고 HEAD^^ : 가장 최근 커밋 2개를 의미)
-### --soft : 커밋만 삭제하고 스태이징 내역은 남김
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git reset --soft HEAD^
-
-
-### 현재 로컬 레파지토리의 커밋은 1개(first commit)이지만, 원격 레파지토리의 커밋은 2개이므로 이를 맞추기 위해서 push 필요
-### 로컬 레파지토리의 커밋이 원격 레파지토리보다 이전 상태이므로 push 가 되지 않기 때문에 강제로 진행하는 -f 옵션 필요
-GD@DESKTOP-3E7Q3H3 MINGW64 ~/Downloads/local (main)
-$ git push -f origin main
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-To https://github.com/teacher-min/local.git
- + 8ca5e35...b45e5c8 main -> main (forced update)
